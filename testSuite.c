@@ -19,6 +19,9 @@ int main()
     int sum20x20;
     int sum200x200;
     int sum2000x2000;
+    double dbTime20;
+    double dbTime200;
+    double dbTime2000;
     clock_t cStart20R, cEnd20R, cStart20C, cEnd20C;
     clock_t cStart200R, cEnd200R, cStart200C, cEnd200C;
     clock_t cStart2000R, cEnd2000R, cStart2000C, cEnd2000C;
@@ -61,9 +64,17 @@ int main()
     cDur20 = cEnd20C - cStart20C;
     cDur200 = cEnd200C - cStart200C;
     cDur2000 = cEnd2000C - cStart2000C;
+    
+    dbTime20 = (double)(cDur20)/(double)CLOCKS_PER_SEC;
+    dbTime200 = (double)(cDur200)/(double)CLOCKS_PER_SEC;
+    dbTime2000 = (double)(cDur2000)/(double)CLOCKS_PER_SEC;
+    
     printf("Column Major, 20x20: %ld\n",cDur20);
+    printf("%d s\n\n",dbTime20);
     printf("Column Major, 200x200: %ld\n",cDur200);
+    printf("%d s\n\n",dbTime200);
     printf("Column Major, 2000x2000: %ld\n",cDur2000);
+    printf("%d s\n\n",dbTime2000);
     
 }
 
