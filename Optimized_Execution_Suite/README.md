@@ -3,11 +3,17 @@ all compiliations are based on the static-dev program testSuite.c, with progress
 the compile commands are listed below for reference
 
 a.o - gcc testSuite.c -g -O0 -o a.o
+
 b.o - gcc testSuite.c -g -O0 -floop-interchange -o b.o
+
 c.o - gcc testSuite.c -g -O1 -o c.o
+
 d.o - gcc testSuite.c -g -O1 -floop-interchange -o d.o
+
 e.o - gcc testSuite.c -g -O2 -o e.o
+
 f.o - gcc testSuite.c -g -O2 -floop-interchange -o f.o
+
 g.o - gcc testSuite.c -g -O3 -o g.o
 
 ## execution results
