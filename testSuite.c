@@ -2,20 +2,30 @@
 #include <stdlib.h>
 #include <time.h>
 
-void matrixInit(int *ptrMatrix, int numRows, int numCols);
-int matrixSumRM(int *ptrMatrix, int numRows, int numCols);
-int matrixSumCM(int *ptrMatrix, int numRows, int numCols);
+void matrixInit(int **ptrMatrix, int numRows, int numCols);
+int matrixSumRM(int **ptrMatrix, int numRows, int numCols);
+int matrixSumCM(int **ptrMatrix, int numRows, int numCols);
 
 int main()
 {
     srand(time(NULL));
     
-    int m20x20[20][20];
-    int m200x200[200][200];
-    int m2000x2000[2000][2000];
-    int *ptrMat20 = &m20x20[0][0];
-    int *ptrMat200 = &m200x200[0][0];
-    int *ptrMat2000 = &m2000x2000[0][0];
+    int **ptrMat20 = (int **)malloc(20*sizeof(int*));
+    	for(int i=0;i<20;i++)
+	{
+		ptrMat20[i]=(int *)malloc(20*sizeof(int));
+	}
+    int **ptrMat200 = (int **)malloc(200*sizeof(int*));
+    	for(int i=0;i<200;i++)
+	{
+		ptrMat200[i]=(int *)malloc(200*sizeof(int));
+	}
+    int **ptrMat2000 = (int **)malloc(2000*sizeof(int*));
+    	for(int i=0;i<2000;i++)
+	{
+		ptrMat2000[i]=(int *)malloc(2000*sizeof(int));
+	}
+ 
     int sum20x20;
     int sum200x200;
     int sum2000x2000;
@@ -65,50 +75,50 @@ int main()
     cDur200 = cEnd200C - cStart200C;
     cDur2000 = cEnd2000C - cStart2000C;
     
-    dbTime20 = (double)(cDur20)/(double)CLOCKS_PER_SEC;
+    dbTime20 =(double)((double)(cDur20)/(double)(CLOCKS_PER_SEC));
     dbTime200 = (double)(cDur200)/(double)CLOCKS_PER_SEC;
     dbTime2000 = (double)(cDur2000)/(double)CLOCKS_PER_SEC;
     
     printf("Column Major, 20x20: %ld\n",cDur20);
-    printf("%d s\n\n",dbTime20);
+    printf("%f s\n",dbTime20);
     printf("Column Major, 200x200: %ld\n",cDur200);
-    printf("%d s\n\n",dbTime200);
+    printf("%f s\n",dbTime200);
     printf("Column Major, 2000x2000: %ld\n",cDur2000);
-    printf("%d s\n\n",dbTime2000);
+    printf("%f s\n",dbTime2000);
     
 }
 
-void matrixInit(int *ptrMatrix, int numRows, int numCols)
+void matrixInit(int **ptrMatrix, int numRows, int numCols)
 {
     for(int i=0;i<numRows;i++)
     {
         for(int j=0;j<numCols;j++)
         {
-                ptrMatrix[i*numCols+j]= rand();
+                ptrMatrix[i][j]= rand();
         }
     }
 }
 
-int matrixSumRM(int *ptrMatrix, int numRows, int numCols)
+int matrixSumRM(int **ptrMatrix, int numRows, int numCols)
 {
     int sum = 0;
     for(int i=0;i<numRows;i++)
     {
         for(int j=0;j<numCols;j++)
         {
-                sum += ptrMatrix[i*numCols+j];
+                sum += ptrMatrix[i][j];
         }
     }
 }
 
-int matrixSumCM(int *ptrMatrix, int numRows, int numCols)
+int matrixSumCM(int **ptrMatrix, int numRows, int numCols)
 {
     int sum = 0;
     for(int j=0;j<numCols;j++)
     {
         for(int i=0;i<numRows;i++)
         {
-                sum += ptrMatrix[i*numCols+j];
+                sum += ptrMatrix[i][j];
         }
     }
 }
